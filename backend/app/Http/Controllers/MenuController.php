@@ -57,10 +57,31 @@ class MenuController extends Controller
 
     public function destroy($id)
     {
+        // Find the menu by ID
         $menu = Menu::findOrFail($id);
+    
+        // Recursive function to delete all children
+        $this->deleteChildren($menu);
+    
+        // Delete the menu itself
         $menu->delete();
-
-        return response()->json(['message' => 'Menu deleted successfully']);
+    
+        // Return a success response
+        return response()->json(['message' => 'Menu and its children deleted successfully']);
     }
+    
+    private function deleteChildren($menu)
+    {
+        foreach ($menu->children as $child) {
+            // Recursively delete each child's children
+            $this->deleteChildren($child);
+    
+            // Delete the child menu
+            $child->delete();
+        }
+    }
+    
+
+    
 }
 
