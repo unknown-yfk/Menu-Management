@@ -11,15 +11,6 @@ Route::get('/user', function (Request $request) {
 
 
 
-// Route::get('/menus', [MenuController::class, 'index']);
-// Route::get('/menus/{id}', [MenuController::class, 'show']);
-// Route::post('/menus', [MenuController::class, 'store']);
-// Route::put('/menus/{id}', [MenuController::class, 'update']);
-// Route::delete('/menus/{id}', [MenuController::class, 'destroy']);
-
-
-
-
 
 Route::apiResource('menus', MenuController::class);
 Route::apiResource('menu-items', MenuItemController::class);
