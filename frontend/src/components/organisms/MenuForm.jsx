@@ -12,7 +12,7 @@
 //   useEffect(() => {
 //     const fetchParentMenus = async () => {
 //       try {
-//         const { data } = await axios.get('http://127.0.0.1:8000/api/menus/');
+//         const { data } = await axios.get('http://72.167.48.186/api/menus/');
 //         setParentMenus(data);
 //       } catch (error) {
 //         console.error('Error fetching parent menus:', error);
@@ -29,7 +29,7 @@
 //       setMenuId(selectedMenu.id);
       
 //       // Fetch the depth from the API
-//       axios.get(`http://127.0.0.1:8000/api/menus/${selectedMenu.id}/`)
+//       axios.get(`http://72.167.48.186/api/menus/${selectedMenu.id}/`)
 //         .then(response => {
 //           setDepth(response.data.depth);
 //         })
@@ -48,7 +48,7 @@
 //       setMenuId(selectedSubmenu.id);
       
 //       // Fetch the depth for the submenu as well
-//       axios.get(`http://127.0.0.1:8000/api/menus/${selectedSubmenu.id}/`)
+//       axios.get(`http://72.167.48.186/api/menus/${selectedSubmenu.id}/`)
 //         .then(response => {
 //           setDepth(response.data.depth);
 //         })
@@ -73,7 +73,7 @@
 //     if (selectedParentId) {
 //       try {
 //         // Fetch the selected parent menu details to get its depth
-//         const { data: parentMenu } = await axios.get(`http://127.0.0.1:8000/api/menus/${selectedParentId}/`);
+//         const { data: parentMenu } = await axios.get(`http://72.167.48.186/api/menus/${selectedParentId}/`);
         
 //         // Set depth based on the parent's depth
 //         if (parentMenu) {
@@ -96,10 +96,10 @@
 //     try {
 //       if (menuId) {
 //         // Update existing menu
-//         await axios.put(`http://127.0.0.1:8000/api/menus/${menuId}/`, { name, parent_id: parentId, depth });
+//         await axios.put(`http://72.167.48.186/api/menus/${menuId}/`, { name, parent_id: parentId, depth });
 //       } else {
 //         // Add new menu
-//         await axios.post('http://127.0.0.1:8000/api/menus/', { name, parent_id: parentId, depth });
+//         await axios.post('http://72.167.48.186/api/menus/', { name, parent_id: parentId, depth });
 //       }
 //       resetForm();
 //       onMenuAdded();
@@ -199,7 +199,7 @@ const MenuForm = ({ onMenuAdded, selectedMenu, selectedSubmenu }) => {
   useEffect(() => {
     const fetchParentMenus = async () => {
       try {
-        const { data } = await axios.get('http://127.0.0.1:8000/api/menus/');
+        const { data } = await axios.get('http://72.167.48.186/api/menus/');
         setParentMenus(data);
       } catch (error) {
         console.error('Error fetching parent menus:', error);
@@ -214,7 +214,7 @@ const MenuForm = ({ onMenuAdded, selectedMenu, selectedSubmenu }) => {
       setParentId(selectedMenu.parent_id || null);
       setMenuId(selectedMenu.id);
       
-      axios.get(`http://127.0.0.1:8000/api/menus/${selectedMenu.id}/`)
+      axios.get(`http://72.167.48.186/api/menus/${selectedMenu.id}/`)
         .then(response => {
           setDepth(response.data.depth);
         })
@@ -232,7 +232,7 @@ const MenuForm = ({ onMenuAdded, selectedMenu, selectedSubmenu }) => {
       setParentId(selectedSubmenu.parent || null);
       setMenuId(selectedSubmenu.id);
       
-      axios.get(`http://127.0.0.1:8000/api/menus/${selectedSubmenu.id}/`)
+      axios.get(`http://72.167.48.186/api/menus/${selectedSubmenu.id}/`)
         .then(response => {
           setDepth(response.data.depth);
         })
@@ -255,7 +255,7 @@ const MenuForm = ({ onMenuAdded, selectedMenu, selectedSubmenu }) => {
   
     if (selectedParentId) {
       try {
-        const { data: parentMenu } = await axios.get(`http://127.0.0.1:8000/api/menus/${selectedParentId}/`);
+        const { data: parentMenu } = await axios.get(`http://72.167.48.186/api/menus/${selectedParentId}/`);
         if (parentMenu) {
           setDepth(parentMenu.depth + 1);
         } else {
@@ -275,10 +275,10 @@ const MenuForm = ({ onMenuAdded, selectedMenu, selectedSubmenu }) => {
     try {
       if (menuId) {
         // Update existing menu
-        await axios.put(`http://127.0.0.1:8000/api/menus/${menuId}/`, { name, parent_id: parentId, depth });
+        await axios.put(`http://72.167.48.186/api/menus/${menuId}/`, { name, parent_id: parentId, depth });
       } else {
         // Add new menu
-        await axios.post('http://127.0.0.1:8000/api/menus/', { name, parent_id: parentId, depth });
+        await axios.post('http://72.167.48.186/api/menus/', { name, parent_id: parentId, depth });
       }
       resetForm();
       onMenuAdded(); // This callback should refetch the menus or update the list
