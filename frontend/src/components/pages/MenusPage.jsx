@@ -10,7 +10,7 @@ import { Link } from 'react-router-dom';
 import { CiFolderOn } from 'react-icons/ci';
 
 const fetchMenus = async () => {
-  const { data } = await axios.get('https://menu.maldomed.com/api/menus/');
+  const { data } = await axios.get('https://menu.maldomed.com/api/menus');
   return data;
 };
 

@@ -199,7 +199,7 @@ const MenuForm = ({ onMenuAdded, selectedMenu, selectedSubmenu }) => {
   useEffect(() => {
     const fetchParentMenus = async () => {
       try {
-        const { data } = await axios.get('https://menu.maldomed.com/api/menus/');
+        const { data } = await axios.get('https://menu.maldomed.com/api/menus');
         setParentMenus(data);
       } catch (error) {
         console.error('Error fetching parent menus:', error);
@@ -214,7 +214,7 @@ const MenuForm = ({ onMenuAdded, selectedMenu, selectedSubmenu }) => {
       setParentId(selectedMenu.parent_id || null);
       setMenuId(selectedMenu.id);
       
-      axios.get(`https://menu.maldomed.com/api/menus/${selectedMenu.id}/`)
+      axios.get(`https://menu.maldomed.com/api/menus/${selectedMenu.id}`)
         .then(response => {
           setDepth(response.data.depth);
         })
@@ -232,7 +232,7 @@ const MenuForm = ({ onMenuAdded, selectedMenu, selectedSubmenu }) => {
       setParentId(selectedSubmenu.parent || null);
       setMenuId(selectedSubmenu.id);
       
-      axios.get(`https://menu.maldomed.com/api/menus/${selectedSubmenu.id}/`)
+      axios.get(`https://menu.maldomed.com/api/menus/${selectedSubmenu.id}`)
         .then(response => {
           setDepth(response.data.depth);
         })
@@ -255,7 +255,7 @@ const MenuForm = ({ onMenuAdded, selectedMenu, selectedSubmenu }) => {
   
     if (selectedParentId) {
       try {
-        const { data: parentMenu } = await axios.get(`https://menu.maldomed.com/api/menus/${selectedParentId}/`);
+        const { data: parentMenu } = await axios.get(`https://menu.maldomed.com/api/menus/${selectedParentId}`);
         if (parentMenu) {
           setDepth(parentMenu.depth + 1);
         } else {
@@ -275,10 +275,10 @@ const MenuForm = ({ onMenuAdded, selectedMenu, selectedSubmenu }) => {
     try {
       if (menuId) {
         // Update existing menu
-        await axios.put(`https://menu.maldomed.com/api/menus/${menuId}/`, { name, parent_id: parentId, depth });
+        await axios.put(`https://menu.maldomed.com/api/menus/${menuId}`, { name, parent_id: parentId, depth });
       } else {
         // Add new menu
-        await axios.post('https://menu.maldomed.com/api/menus/', { name, parent_id: parentId, depth });
+        await axios.post('https://menu.maldomed.com/api/menus', { name, parent_id: parentId, depth });
       }
       resetForm();
       onMenuAdded(); // This callback should refetch the menus or update the list
