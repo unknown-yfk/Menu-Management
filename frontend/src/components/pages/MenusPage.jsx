@@ -10,7 +10,7 @@ import { Link } from 'react-router-dom';
 import { CiFolderOn } from 'react-icons/ci';
 
 const fetchMenus = async () => {
-  const { data } = await axios.get('https://72.167.48.186/api/menus/');
+  const { data } = await axios.get('https://menu.maldomed.com/api/menus/');
   return data;
 };
 
@@ -93,7 +93,7 @@ const MenusPage = () => {
 
   const handleDeleteMenu = async () => {
     try {
-      await axios.delete(`https://72.167.48.186/api/menus/${contextMenu.menu.id}`);
+      await axios.delete(`https://menu.maldomed.com/api/menus/${contextMenu.menu.id}`);
       refetch();
     } catch (error) {
       console.error("Failed to delete menu:", error);
